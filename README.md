@@ -41,3 +41,5 @@ pip3 freeze > requirements.txt
 ```
 sqlite3 base.db < base.sql
 ```
+
+texto de prueba
