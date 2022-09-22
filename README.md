@@ -20,3 +20,17 @@ $git commit -m "UPDATED estructura de Proyecto"
 ```bash
 $git push -u origin main
 ```
+## Requeriments 
+```
+Sirve para guardar las librerias
+```
+
+## Instalar la version mas reciente de Python
+```
+pip3 install -r requirements.txt
+```
+## Muestra las versiones instaladas
+```
+pip3 freeze
+```
+## 
