@@ -33,4 +33,11 @@ pip3 install -r requirements.txt
 ```
 pip3 freeze
 ```
-## 
+## Uso de Tuberias para dirigir la salida de un comando
+```
+pip3 freeze > requirements.txt
+```
+## Uso de tuberia para abrir o crear una base de datos si no existe
+```
+sqlite3 base.db < base.sql
+```
