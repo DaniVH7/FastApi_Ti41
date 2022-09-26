@@ -41,3 +41,14 @@ pip3 freeze > requirements.txt
 ```
 sqlite3 base.db < base.sql
 ```
+##
+adress already in use: significa que uvicorn se esta ejecutando en el puerto 8000
+## Detener proceso en segundo plano
+```
+kill PID
+o kill -9 PID
+```
+## Ejecuta la API
+```
+ uvicorn main:app --reload
+```
