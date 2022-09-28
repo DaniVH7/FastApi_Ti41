@@ -54,5 +54,5 @@ o kill -9 PID
 ```
 ## Ejecuta la API
 ```
- uvicorn main:app --reload
+ python3 -m uvicorn api.main:app --reload
 ```
