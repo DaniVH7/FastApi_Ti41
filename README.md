@@ -1,5 +1,9 @@
 # fastAPI_Ti41
 *Demo FastApi*
+## Codigo para ejecutar el Script
+```bash
+python3 -m uvicorn api.main:app --reload
+```
 ## Verificar SO y Kernel 
 ```bash
 $uname -a
