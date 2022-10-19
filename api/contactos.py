@@ -98,3 +98,41 @@ async def get_contactos(id_contacto:int):
             status_code = status.HTTP_400_BAD_REQUEST,
             detail=" Error Fatal 💀 "
         )
+
+#3
+@app.post(
+    "/contactos/{id_contacto}",
+    response_model = Mensaje, 
+    summary ="Ingresa un nuevo contacto",
+    description = "Endpoint para ingresar un Contacto nuevo"
+)
+async def post_contactos(contacto:Contacto):
+    try:
+        with sqlite3.connect("api/sql/contactos.db") as connection:
+            connection.row_factory = sqlite3.Row
+            cursor = connection.cursor()
+            telefono = 10
+            if telefono +10:
+                return JSONResponse(status_code=404, content={"mensaje":"El numero de Telefono solo debe tener 10 digitos, intenta nuevamente"})
+            else:
+                consult = "SELECT email from contactos;"
+                cursor.execute(consult)
+                result = cursor.fetchall()
+                existent_email = []
+                for row in result:
+                        existent_email.append(str(row['email']))
+                if contacto.email in existent_email:
+                        response = {"mensaje":"El Correo esta vinculado a otra cuenta, intente con uno nuevo"}
+                        return response
+                else:
+                    sql="INSERT INTO contactos VALUES (null, ?, ?, ?);"
+                    values = (contacto.nombre, contacto.email, contacto.telefono, )
+                    cursor.execute(sql, values)
+                    response = {"mensaje":"Contacto ingresado exitosamente"}
+                    return response
+    except Exception as error:
+        print(f"Error al ingresar un dato{error.args}")
+        raise HTTPException(
+            status_code = status.HTTP_400_BAD_REQUEST,
+            detail=" Error Fatal 💀 "
+        )
