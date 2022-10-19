@@ -70,3 +70,31 @@ async def get_contactos():
             status_code = status.HTTP_400_BAD_REQUEST,
             detail="Error al consultar los datos"
         )
+
+#3
+@app.get(
+    "/contactos/{id_contacto}",
+    response_model = Contacto, 
+    status_code = status.HTTP_202_ACCEPTED,
+    summary ="Muestra un solo Resultado",
+    description = "Endpoint que regresa un Contacto"
+)
+async def get_contactos(id_contacto:int):
+    try:
+        with sqlite3.connect("api/sql/contactos.db") as connection:
+            connection.row_factory = sqlite3.Row
+            cursor = connection.cursor()
+            sql="SELECT * FROM contactos WHERE id_contacto=?;"
+            values=(id_contacto, )
+            cursor.execute(sql, values)
+            response = cursor.fetchone()
+            if response == None:
+                return JSONResponse(status_code = 404, content={"mensaje":" ID inexistente, ingresa uno valido"})
+            else:
+                return response
+    except Exception as error:
+        print(f"Error al consultar tus datos{error.args}")
+        raise HTTPException(
+            status_code = status.HTTP_400_BAD_REQUEST,
+            detail=" Error Fatal 💀 "
+        )
